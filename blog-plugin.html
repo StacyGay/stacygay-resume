@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Stacy Gay</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Stacy Gay</span>
+                <span class="d-none d-lg-block"><img class="img-fluid mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+            </a>
+            <p class="d-none d-md-block" style="color:aliceblue">
+                Stacy Gay
+            </p>
+            <a style="color:aliceBlue" href="mailto:stacygay@gmail.com">stacygay@gmail.com</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./index.html">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="./blog-plugin.html">Plugin Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="./blog-test.html">Trinity of Test</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="./blog-unity-di-vnext.html">Unity DI ASP VNext</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- About-->
+            <section class="resume-section" id="plugin-arch">
+                <div class="resume-section-content">
+                    <h1 class="d-none d-md-block">Maintaining the Feature Factory: </h1>
+                    <h2 class="text-primary mb-5">Plugin Architecture for Multi-Tenant Software as a Service</h2>
+                    <p>
+                        Multi-tenancy is a fuzzy concept. Throughout my career with Fuel and the depths of adventurous researching, I have yet to find a comprehensive definition of multi-tenancy and not a hint of an implementation that would suit our needs. Our aim is to provide a Software as a Service to a diverse set of clients each with their own business rules in a single unified API. It’s a lofty goal so let’s see what we can do.
+                    </p>
+                    <p class="mb-5">
+                        Our focus will be on organizing code and configuration. Other concerns such as separation of data can be accomplished within the framework defined here. We will be leveraging an IoC container and the examples will include <a href="https://structuremap.github.io/" target="_blank" rel="noopener noreferrer">StructureMap</a> but this can be replaced with any other container that supports organizing registrations into separate registries or modules. 
+                    </p>
+
+                    <h3 class="mt-1">Goals</h3>
+                    <ul>
+                        <li>Define a tenant and possible permutations within each context.</li>
+                        <li>Support an ever-growing list of features of which behaviors need the ability to be modified or overridden by each tenant as their business logic dictates.</li>
+                        <li>Maintain configuration for each tenant which applies to the appropriate feature set.</li>
+                    </ul>
+
+                    <h3 class="mt-4">Configuration</h3>
+                    <p>
+                        Let's start by talking about how to configure our tenants. We need each setting or feature flag to be defined by the domain and/or context it will be applied to. Take a look at the following models:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/e475d2afc4aabb5bb6c385d6816c069d.js"></script>
+
+                    <p>
+                        Aside from the Name, Type, and Value, the ConfigItem model has some fields to help in defining where and when to apply the setting. The <b>Domain</b> defines where to apply the setting. If set to null it would apply to potentially any part of the application. If set to “Sales” it would apply specifically to any feature that falls under the domain of “Sales”. <b>Context</b> defines when we should apply the setting. We can use Context to separate what config gets applied to a website vs a web service or if an administrator is logged in vs an anonymous user. We’ll talk about the Tenant and View Ids in the next section. A parse method has been included for converting the string to a more appropriate type. Additionally, we’ve defined interface <b>ISystemConfig</b> and its implementation <b>SystemConfig</b> as a base config object for storing system-wide settings. The implementation of <b>RequiredConfig</b> will check to see if the ConfigItem’s settings are appropriate for applying its value to the current ISystemConfig. Just for example here we’ve included a setting for “ApplyFees”. SystemConfig will receive its value for “ApplyFees” from the ConfigItem with the same name.
+                    </p>
+
+                    <h3 class="mt-4">Defining the Tenant</h3>
+                    A tenant can just be a term for an individual client but that’s a very narrow definition. The client may also want to have different behavior based on some criteria. For example, let's say client A wants to have a sale where the page displays all prices as being 20% off but also applies an extra 25% fee on conversion. We need to define a set of identifiers for this tenant and specific view.
+
+                    <script src="https://gist.github.com/StacyGay/7a17e3024f473f7dd3b381436342f94a.js"></script>
+
+                    <p>
+                        Here we’ve created an interface <b>ISystemIdentifier</b> as a contract for what identifies the current configuration and the order of which that configuration should be applied. The order is defined by our PriorityRank from System level to safety, we’ve also left some room between the levels for growth later. The implementations for ISystemIdentifier are <b>Tenant</b> and <b>View</b>. Since View has been defined with a higher PriorityRank, its configuration will be applied after Tenant’s and thus can override any of its ConfigItems.
+                    </p>
+
+                    <h3 class="mt-4">Bring on the Features!</h3>
+                    <p>
+                        Here we should take a bit of a step back and take a look at how we can introduce different features using the same API. We’ll create an interface as a contract for our plugins to fulfill and then rely on the IoC container to supply to us each of the plugins’ implementation of that interface. Take a look at this simple example for a fee service:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/0c8265b046061478903881917848ff6f.js"></script>
+
+                    <p>
+                        Now we have an example of our end goal. We’ve created a feature that can have a number of implementations as applied by the individual system identifiers. Here fee service is receiving SystemConfig and a collection of IFeeModules from the IoC container. The setting for ApplyFees is being checked before moving on to processing the individual IFeeModules. Each IFeeModule then gets processed and summed together to be added as fees to the original price. Now let's see how we can set up the plugins to make this work.
+                    </p>
+
+                    <h3 class="mt-4">Plugins</h3>
+
+                    <p>
+                        In order to simulate a plugin system, we’re going to be leveraging the IoC container’s Registry (or Module) system. We’ll need to expand it a bit in order to create some infrastructure for deciding when to apply the plugin based on the given Tenant and or View. Take a look at the following code:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/76e3df58f5bc6f37619f33264dd7dff2.js"></script>
+
+                    <p>
+                        Before we go any further lets look at whats going on here. First <b>ConfigStore</b> is a bit of plumbing. It allows us to store multiple implementations of ISystemConfig as they are created. In our feature services, we’ll have these config objects injected into the constructor but the IoC container will not yet be configured while we’re applying our plugins and we only want to call the container’s Configure method once as it’s very expensive to configure a container multiple times.
+                    </p>
+
+                    <p>
+                        We’ve created an interface <b>IPluginRegistry</b> to be an extension of StructureMap’s Registry class adding a <b>Priority</b> as well as methods for <b>Validate</b> and <b>Initialize</b>. IPluginRegistry will not be implemented directly but instead will be implemented by inheriting from the <b>PluginRegistry&lt;&gt;</b> abstract class. This abstract class defines two methods necessary for creating registries where plugins will define their implementations. Validate is a method that makes a decision if this plugin should be applied or not. RegisterDependencies is where we will register interface implementations with the container.
+                    </p>
+
+                    <p>
+                        Lastly, the PluginRegistry abstract class adds the base method for creating a config object from a generic ISystemConfig. This is accomplished by collecting all ConfigItems from the ISystemIdentifiers, ordering them by the identifiers priority and then de-duplicating them into a dictionary allowing those with higher priority to override those with lower priority. Finally, the method will collect all properties of the ISystemConfig object, find a match for the property name in the ConfigItems, parse it into the correct type and set it into the config object’s property.
+                    </p>
+
+                    <p>
+                        Let's take a look at an implementation of PluginRegistry&lt;&gt; to match our fees example above:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/4b1587d7d97c9cfe796aeda70f1ae3eb.js"></script>
+
+                    <p>
+                        This code has been loaded from an external plugin library. First, it defines its own implementation for ISystemConfig as <b>ExtraFeesConfig</b> with properties for config values to be used in its own plugin. It then defines two implementations for <b>IFeeModule</b>. Lastly, it defines an ExtraFeesPlugin implementation for <b>PluginRegistry&lt;ExtraFeesConfig&gt;</b> this class will handling preparing the properties of ExtraFeesConfig from any config items stored in the tenants identifiers. It also registers ExtraFeesModule to be used in the FeeService mentioned previously. Also, optionally if EnableEvenMoreFees is set, it will also register the FeesOnTopOfFeesModule to be used in the Fees service as well.
+                    </p>
+
+                    <h3 class="mt-4">Putting it all together</h3>
+                    <p>
+                        We’re starting to realize the power of this architecture. We can have hundreds of clients with individual and numerous configurations that just plop in new features to work with an already well-defined API. However, before we wrap up, we need some system-level infrastructure that controls discovering these plugins and configuring the IoC container with them. Note: The examples below are using the APIs as defined by the <b>StructureMap</b> IoC container. Though the approach will work with any container that supports Registries / Modules and scanning for libraries:
+                    </p>
+                        
+                    <script src="https://gist.github.com/StacyGay/9da08511db18c99fd665a67e3af2849e.js"></script>
+
+                    <p>
+                        Here we’ve created a Registry <b>PluginFinderRegistry</b> that is responsible for finding all plugin libraries then uses StructureMap’s scanning capabilities for finding all implementations of <b>IPluginRegistry</b> and registering them with the container. This PluginFinderRegistry is then registered with the application’s root container. The meat of our plumbing here is with the <b>SystemLoader</b> class. It is responsible for creating the root container and configuring a new nested container for the given <b>TenantName</b> and <b>ViewName</b>. Check the example below to see it in action:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/2ffb1dfe8b458171e642cf33ea35a385.js"></script>
+
+                    <p>
+                        Here we’ve set up our system parameters to use TenantA with the WebSpecial view. The SystemLoader created the root container then configured a nested version with our config objects and plugin registrations. We retrieved the feeService which then was provided with both the ExtraFeesModule and FeesOnTopOfFeesModule. These modules would apply their fees based on the configuration defined for this Tenant and View.
+                    </p>
+
+                    <p>
+                        The implementation in this post is a bit oversimplified but should at least provide you with some points to think on. Other dimensions could be added to the identifiers as needed such as language or time frames. System parameters could be extended to include the logged-in user. The current context could be added as an identifier to modify behavior between a web site vs a web service or even a tasks server.
+                    </p>
+
+                    <p>
+                        Multi-tenancy is a vast topic that has surprisingly little written about it. The information given here is simply from my own adventures in Software as a Service and developing the Fuel Booking Engine here at Fuel.
+                    </p>
+                </div>
+            </section>
+            <hr class="m-0" />
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

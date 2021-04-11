@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Stacy Gay</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">Stacy Gay</span>
+                <span class="d-none d-lg-block"><img class="img-fluid mx-auto mb-2" src="assets/img/profile.jpg" alt="" /></span>
+            </a>
+            <p class="d-none d-md-block" style="color:aliceblue">
+                Stacy Gay
+            </p>
+            <a style="color:aliceBlue" href="mailto:stacygay@gmail.com">stacygay@gmail.com</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="./index.html">About</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="./blog-plugin.html">Plugin Architecture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="./blog-test.html">Trinity of Test</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger" href="./blog-unity-di-vnext.html">Unity DI ASP VNext</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- Blog Content-->
+            <section class="resume-section" id="plugin-arch">
+                <div class="resume-section-content">
+                    <h1 class="d-none d-md-block">The Trinity of Test: </h1>
+                    <h2 class="text-primary mb-5">Using Moq, xUnit and AutoFixture for Test Driven Design</h2>
+
+                    <p>
+                        Getting started unit testing is hard. Really hard.
+                    </p>
+
+                    <p>
+                        To phrase it like the late Mitch Hedberg, "Man, you don't know how hard it is to quit smoking.  Yes I do, it's as hard as it is to <i>start unit testing!</i>".  He didn't actually say that, but he would have if he was a programmer.
+                    </p>
+
+                    <p>
+                        What makes it so hard to start unit testing is the damn legacy code.  People say the problem with testing legacy stuff is all the strongly coupled code.  I say, we wouldn't have to worry about all the dependencies if it wasn't for all the freaking data.  Seriously, how are you supposed to write quick executing tests with all these damn database calls directly in your services.
+                    </p>
+
+                    <p>
+                        So you get a nice dependency injection framework.  You refactor all of the queries out into repositories nicely injected into your services. Then you start down the long road of writing tests.  You've still got a problem here.
+                    </p>
+
+                    <p>
+                        How do I get the test data to run through your services?  Get a mocking framework.
+                    </p>
+                    <p>
+                        Now you've got another problem, getting test data into your mock repos takes 10 times more coding than the stupid test itself.
+                    </p>
+                    <p>
+                        <strong>Fear not!</strong>  Let me introduce you to the testing trinity that actually made this fun for me.
+                    </p>
+
+                    <ol>
+                        <li><a title="Moq" href="https://github.com/Moq/moq4" target="_blank" rel="noopener noreferrer">Moq</a></li>
+                        <li><a title="xUnit" href="https://github.com/xunit/xunit" target="_blank" rel="noopener noreferrer">xUnit</a></li>
+                        <li><a title="AutoFixture" href="https://github.com/AutoFixture/AutoFixture" target="_blank" rel="noopener noreferrer">AutoFixture</a></li>
+                    </ol>
+
+                    <p>
+                        <em>Note: Make sure you also get the <a title="AutoFixture.AutoMoq" href="http://www.nuget.org/packages/AutoFixture.AutoMoq/" target="_blank" rel="noopener noreferrer">AutoFixture.AutoMoq</a> and <a title="AutoFixture.Xunit" href="http://www.nuget.org/packages/AutoFixture.Xunit/" target="_blank" rel="noopener noreferrer">AutoFixture.Xunit</a> nuget packages</em>
+                    </p>
+
+                    <h3 class="mt-2">Moq</h3>
+                    <p>
+                        Moq is a good all around mocking framework.  The basic setup goes as follows:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/0d00ebe5e3bd8a208159aa6b7ae067f0.js"></script>
+
+                    <p>
+                        The idea here is pretty simple. We've got a repository that just returns a string. We've made a mock of the repo that just returns "Something" for any integer passed in. We supply this mock repo to our service under test through the constructor as it would be when generated by an IoC container. We then call a method that makes use of the mock repository and assert that the service logic gives us a result that we expect. Moq has plenty of other options beyond this example. For instance you can supply different output for different parameter values or even throw an exception if you're trying to test how your service handles errors. For now I'll move on as I am more interested in how well this plays nice with AutoFixture and xUnit.
+                    </p>
+
+
+                    <h3 class="mt-2">xUnit</h3>
+                    <p>
+                        xUnit is a successor to NUnit. It has pared down the feature list keeping the so called good stuff. For the most part it works about the same, just removing the need for the [TestFixture] attribute on the top of the test class and renaming the [Test] method attribute with [Fact]. The real beauty of xUnit though is the [Theory] type test. Theories are data centric tests that enable the test method to take in a parameter so you can run your test with several different data seeds. Take a look at this example:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/b923440caf7b3d15fdb728f1230f9d1b.js"></script>
+
+                    <p>
+                        This is kinda cool, we can run the same test on multiple values.  Another usage of this would be to make sure the service is durable under several different parameter configurations without having to rewrite the same test.  This is all fine and dandy but lets bring AutoFixture into the mix so we can get to the good stuff.
+                    </p>
+
+                    <h3 class="mt-2">AutoFixture</h3>
+
+                    <p>
+                        AutoFixture aims to remove test data setup by auto generating values to fill variables or class fields.  At its base its pretty simple, see this example:
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/97a48d598669f330da6841048f133615.js"></script>
+
+                    <p>
+                        This is great! Have a complex object with over a hundred fields because the marketing department won't stop bothering your customers about their personal life? No Problem! AutoFixture will slap junk data in there so you wont have to worry about wiring in the mock data by hand. Its really nifty.
+                        <br><br>
+                        Now lets take a look at putting all three of these bad boys together.
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/19018f17408761b4cd7768d61c78e605.js"></script>
+
+                    <p>
+                        What the what? Did that just happen?! Looks like we're injecting similar to how we would with a dependency injection framework. By declaring productRepo as [Frozen] AutoFixture injects our mock ProductRepo into TransactionService so all we have to do is setup the GetProduct method with the proper output. Product and Customer will be automatically filled with junk data. Here we want to make sure that our TransactionService will throw an exception if customer has an invalid email address. We just set the customer email to a value that will produce the expected result and pass it through to the Sell method. Really cool right?!
+                    </p>
+
+                    <p>
+                        One last thing to mention, you'll notice that along with the Theory attribute we're also decorating the test method with the AutoMoqData attribute. This didn't come out of the box with the nuget packages so I'll give you the class I found while researching this on the internet.
+                    </p>
+
+                    <script src="https://gist.github.com/StacyGay/ef450b17bb4570b52848ce642f647169.js"></script>
+
+                    <p>
+                        Well, there you go! That's my testing setup in a nutshell. There's more to expand on what you can do with both Moq and AutoFixture. Both of their Github readme files are pretty robust, I suggest you read through them. Good luck in your own testing adventures!	
+                    </p>
+                </div>
+            </section>
+            <hr class="m-0" />
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
