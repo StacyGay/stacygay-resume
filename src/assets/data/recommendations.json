@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Shad Belcher",
+        "title": "Lead Software Engineer Fuel Travel",
+        "email": "shadbelcher@me.com",
+        "phone": "(843) 848-2173",
+        "address": "139 Houston Street St. Charles, MO 6330",
+        "comment": "I worked with Stacy for 12 years doing software development and I know he would be an asset to any company looking for a software engineer. We worked on many projects over the years together and he had a great mind for architecture that was easy to maintain. We had a wide range of projects since we were a small company, and he was always willing to jump in wherever he was needed. He always kept up to date with his technical knowledge and taught me many things even though I had more years of experience. On a personal level, he was a joy to talk to about a variety of subjects and is a great dad. I would recommend him to any company."
+    },
+    {
+        "name": "Ronald Cheng",
+        "title": "Engineering Manager at Indeed",
+        "email": "rcheng@indeed.com",
+        "address": "201 Mission Street Suite 300 San Francisco, CA 94105",
+        "comment": "Stacy is a great engineer that built the redesign of our \"Text to Apply\" product's jobseeker facing portion.  Beyond coding, he was the point of contact for the business stakeholders, as well as training the engineers that would take over maintenance of the product. Besides product engineering work, Stacy has found ways to improve our infrastructure.  Examples include improving our Node framework for running tests and cron jobs, and making it easier to develop using CloudVM. In addition, Stacy mentored two developers, who gave great feedback on how helpful the mentorship was."
+    },
+    {
+        "name": "Russell Kyle",
+        "title": "Staff Software Engineer at Indeed",
+        "email": "russell.j.kyle@gmail.com",
+        "address": "10721 Domain Drive Austin, TX 78758",
+        "comment": "I have worked with Stacy on several initiatives. He had a big impact not only on our department but contributed to many different ecosystems and teams at the company. Stacy was especially valuable in our efforts to evaluate and switch tech-stacks from Django to Node.js. Which was an important technical and business initiative we were undertaking. Using his experience and expertise, he helped bring the new tech-stack to parity with our previous one. Tackling many of the harder issues that other engineers had pushed down the road. He is able to take a problem, research it and then come up with multiple options and then get alignment from the rest of the stakeholders. He leaves detailed instructions and would break out work items, making it easy for other engineers to pick up the work if needed.  Beyond his technical skills he has excellent soft skills. He always had a good attitude about his work and toward his teammate, willing to jump in and help those that ask. All in all I'd take Stacy on my team again in a heartbeat if the opportunity presented itself."
+    },
+    {
+        "name": "Krishna Gond",
+        "title": "Senior Software Engineer | Backend Developer Indeed",
+        "comment": "I had the pleasure working with Stacy on a project where he played a crucial role in its success. I strongly recommend Stacy for any position that requires full stack development skills, especially in React and Python. Apart from his technical abilities, Stacy was a valuable team player and always willing to go the extra mile to help the team members and ensure the project’s success. He will undoubtedly be an asset to any team he joins."
+    },
+    {
+        "name": "Mohan KRK",
+        "title": "Director of Engineering, Indeed ads & India leadership team",
+        "comment": "My team worked with Stacy to build the very innovative text 2 apply product. Stacy is a talented engineer and is very collaborative as well. Strongly recommend!"
+    }
+]

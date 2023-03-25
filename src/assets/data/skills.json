@@ -1,0 +1,35 @@
+[
+    {
+        "icon": "react-small.svg",
+        "name": "React"
+    },
+    {
+        "icon": "angular.svg",
+        "name": "Angular"
+    },
+    {
+        "icon": "typescript.svg",
+        "name": "TypeScript"
+    },
+    {
+        "icon": "nodejs.svg",
+        "name": "NodeJS"
+    },
+    {
+        "icon": "python.svg",
+        "name": "Python"
+    },
+    {
+        "icon": "csharp.svg",
+        "name": "C#"
+    },
+    {
+        "icon": "dotnet.svg",
+        "name": ".Net"
+    },
+    {
+        "icon": "aws.svg",
+        "name": "AWS",
+        "background": "white"
+    }
+]
