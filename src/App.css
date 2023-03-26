@@ -38,3 +38,36 @@ body {
     border-radius: 5em;
     filter: grayscale(1);
 }
+
+/* .slide-in {
+    -webkit-animation: slideIn 1s forwards;
+    -moz-animation: slideIn 1s forwards;
+    animation: slideIn 1s forwards;
+}
+
+@-webkit-keyframes slideIn {
+    0% {
+        transform: translateY(500px) rotateX(90deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+@-moz-keyframes slideIn {
+    0% {
+        transform: translateY(500px) rotateX(90deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(500px) rotateX(90deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0);
+    }
+} */
