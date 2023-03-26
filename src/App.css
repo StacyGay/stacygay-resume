@@ -1,3 +1,8 @@
+body {
+    background: rgb(20,20,20);
+    background: linear-gradient(22deg, rgba(20,20,20,1) 0%, rgba(57,57,57,1) 50%, rgba(17,18,18,1) 100%);
+}
+
 #root {
     max-width: 1280px;
     margin: 0 auto;

@@ -1,0 +1,41 @@
+[
+    {
+        "title": "Software Engineer II",
+        "company": "Indeed",
+        "dates": "July 2022 - Present",
+        "items": [
+            "Developed and evolved Text2Apply / Scan2Apply product from experiment to enterprise release on a Python / Django, React based containerized environment",
+            "Evolved infrastructure as part of move from local data centers to AWS using Terraform",
+            "Built up department wide infrastructure for NodeJS projects using Typescript, Koa and Remix",
+            "Developed unit (jest) and integration (testcafe) testing frameworks for new NodeJS stacks",
+            "Took part in migration of products from Python/Django to NodeJS",
+            "Mentored Junior engineers as well as trained seasoned engineers on NodeJS environments"
+        ]
+    },
+    {
+        "title": "Software Engineer",
+        "company": "Fuel Interactive",
+        "dates": "June 2010 - July 2022",
+        "items": [
+            "Architected, Developed and Maintained Guestdesk multi-tenant online and mobile travel reservation systems",
+            "Developed and consumed Soap and Rest APIs using .Net 4 / .Net Core to .Net 6 serving frontend and partner integrations",
+            "Created a robust plugin based multi-tenant configuration system built on top of Autofac",
+            "Created, from the ground up, frontend SPAs using Angular 2 - Angular 13 including customer facing reservation systems, website plugins and client dashboards",
+            "Developed Android and iOS native apps integrating with existing backend .Net APIs. Built and maintained eCRM, Analytics, Abandonment and Targeted advertising systems using ExactTarget / SalesForce, MailChimp, Twilio, BlueShift, Google Analytics",
+            "Campaigned to introduce unit / integration test suite using xUnit, Moq, Autofixture, Selenium",
+            "Introduced and maintained devops systems using TeamCity and AWS CodeDeploy",
+            "Built and maintained scalable cloud instances in AWS CloudFormation",
+            "Trained and Code Reviewed junior developers"
+        ]
+    },
+    {
+        "title": "Web Application Developer / Designer",
+        "company": "Coastal Carolina University ITS Web Group",
+        "dates": "October 2008 - May 2010",
+        "items": [
+            "Created faculty applications such as report builders, annual report collection & publishing, and student application management systems using a combination of PHP and Flash/Flex",
+            "Developed personality test engine for psychology department faculty",
+            "Created volunteer registration application for ShelterHaiti.com"
+        ]
+    }
+]

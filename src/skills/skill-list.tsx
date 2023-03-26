@@ -15,7 +15,7 @@ export function SkillList(): ReactElement {
             .catch((e) => {
                 console.log('Error getting skills', e);
             });
-    });
+    }, []);
 
     return (
         <div>
