@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+// @ts-ignore
 import AnchorLink from 'react-anchor-link-smooth-scroll-v2'
 
 export function SideBar(): ReactElement {
