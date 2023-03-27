@@ -1,4 +1,5 @@
 import { ReactElement } from "react";
+import AnchorLink from 'react-anchor-link-smooth-scroll-v2'
 
 export function SideBar(): ReactElement {
     return (
@@ -19,29 +20,29 @@ export function SideBar(): ReactElement {
                 </div>
                 <ul className="my-8 text-xl">
                     <li>
-                        <a className="link" href="#about">
+                        <AnchorLink className="link" href="#about">
                             About
-                        </a>
+                        </AnchorLink>
                     </li>
                     <li>
-                        <a className="link" href="#skills">
+                        <AnchorLink className="link" href="#skills">
                             Skills
-                        </a>
+                        </AnchorLink>
                     </li>
                     <li>
-                        <a className="link" href="#experience">
+                        <AnchorLink className="link" href="#experience">
                             Experience
-                        </a>
+                        </AnchorLink>
                     </li>
                     <li>
-                        <a className="link" href="#reviews">
+                        <AnchorLink className="link" href="#reviews">
                             Reviews
-                        </a>
+                        </AnchorLink>
                     </li>
                     <li>
-                        <a className="link" href="#interests">
+                        <AnchorLink className="link" href="#interests">
                             Interests
-                        </a>
+                        </AnchorLink>
                     </li>
                     <li>
                         <a className="link" href="http://stacygay.com/blog-plugin.html">
