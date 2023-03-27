@@ -51,7 +51,7 @@ export function SideBar(): ReactElement {
                         </a>
                     </li>
                     <li>
-                        <a className="link" href="https://github.com/StacyGay/stacygay_com">
+                        <a className="link" href="https://github.com/StacyGay/stacygay-resume">
                             Source
                         </a>
                     </li>
@@ -62,7 +62,7 @@ export function SideBar(): ReactElement {
                     </li>
                 </ul>
                 <div>
-                    <a className="btn btn-wide btn-primary" href="https://docs.google.com/document/d/14tpSMuEmwBv_Bu2qxwRcaoZXkCHA7UxAsROTRR88jxw/edit?usp=sharing">
+                    <a className="btn btn-wide btn-primary" href="./StacyGaySoftwareEngineerResume.pdf">
                         Download Resume
                     </a>
                 </div>

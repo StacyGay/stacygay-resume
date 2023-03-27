@@ -1,4 +1,4 @@
-const iconPath = './src/assets';
+const iconPath = './icons';
 
 export interface Skill {
     icon?: string,
@@ -8,7 +8,7 @@ export interface Skill {
 }
 
 export async function getSkills(): Promise<Skill[]> {
-    const response = await fetch('./src/assets/data/skills.json');
+    const response = await fetch('./data/skills.json');
 
     const data = await response.json() as Skill[];
     if (!response.ok) {

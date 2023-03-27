@@ -8,7 +8,7 @@ export interface Review {
 }
 
 export async function getReviews(): Promise<Review[]> {
-    const response = await fetch('./src/assets/data/reviews.json');
+    const response = await fetch('./data/reviews.json');
 
     const data = await response.json() as Review[];
     if (!response.ok) {

@@ -1,22 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import profile from './assets/profile.jpg';
-import './App.css'
-import { SkillList } from './skills/skill-list'
-import { Experience } from './experience/experience';
-import { ReviewList } from './reviews/review-list';
-import { SideBar } from './side-bar';
+import "./App.css"
+import { SkillList } from "./skills/skill-list"
+import { Experience } from "./experience/experience";
+import { ReviewList } from "./reviews/review-list";
+import { SideBar } from "./side-bar";
+import { NavBar } from "./nav-bar";
+import { Footer } from "./footer";
 
 function App() {
-    const [count, setCount] = useState(0)
-
     return (
+        <>
+        <NavBar></NavBar>
         <div className="App lg:flex py-4 lg:px-4 lg:px-2">
             <div className="lg:w-3/4 py-2 px-5">
-                <header className="lg:text-right my-10">
+                <header className="my-10">
                     <h1>Hi, I'm Stacy Gay</h1>
                     <h2>and I am a Software Engineer</h2>
+                    <div className="mt-8">
+                        <a className="link font-bold mx-2" href="mailto:stacygay@gmail.com">
+                            stacygay@gmail.com
+                        </a>
+                        |
+                        <a className="link mx-2" href="tel:843-997-1308">(843) 997-1308</a>
+                        |
+                        <span className="mx-2">2018 Catskill ct. Apex, NC 27523</span>
+                    </div>
+                    <div className="mt-4 flex justify-center gap-4">
+                        <div className="avatar">
+                            <div className="w-8 rounded">
+                                <a href="https://www.linkedin.com/in/stacy-gay-616b0520/">
+                                    <img src="linkedin.svg" alt="linked in" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="avatar">
+                            <div className="w-8 rounded">
+                                <a href="https://twitter.com/stacygay">
+                                    <img src="twitter.svg" alt="twitter" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="avatar">
+                            <div className="w-8 rounded">
+                                <a href="https://www.facebook.com/stacytedgay/">
+                                    <img src="facebook.svg" alt="facebook" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="my-8">
+                        <a className="btn btn-wide btn-primary" href="./StacyGaySoftwareEngineerResume.pdf">
+                            Get my resume
+                        </a>
+                    </div>
                 </header>
             
                 <section id="about" className="flex flex-col w-full mt-24 border-opacity-50">
@@ -66,6 +101,8 @@ function App() {
             </div>
             <SideBar></SideBar>
         </div>
+        <Footer></Footer>
+        </>
     )
 }
 

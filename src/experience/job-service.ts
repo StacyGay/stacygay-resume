@@ -5,7 +5,7 @@ export interface Job {
 }
 
 export async function getJobs(): Promise<Job[]> {
-    const response = await fetch('./src/assets/data/experience.json');
+    const response = await fetch('./data/experience.json');
 
     const data = await response.json() as Job[];
     if (!response.ok) {
