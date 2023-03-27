@@ -1,9 +1,10 @@
 const iconPath = './src/assets';
 
 export interface Skill {
-    icon: string,
-    name: string,
+    icon?: string,
+    name?: string,
     background?: string,
+    text?: string,
 }
 
 export async function getSkills(): Promise<Skill[]> {
@@ -14,7 +15,8 @@ export async function getSkills(): Promise<Skill[]> {
         throw `Error getting skills`;
     }
 
-    data.map((s) => s.icon = `${iconPath}/${s.icon}`);
+    data.filter((s) => s.icon)
+        .map((s) => s.icon = `${iconPath}/${s.icon}`);
 
     return data ;
 }

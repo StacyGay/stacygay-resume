@@ -1,47 +1,40 @@
-import { motion, useAnimation } from 'framer-motion';
-import { ReactElement, useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'framer-motion';
+import { ReactElement, useRef } from 'react';
 import { Job } from './job-service';
 
 export interface JobProps {
     job: Job;
 }
 
-const boxVariant = {
-    visible: { opacity: 1, scale: 1, x: 0, transition: { duration: 0.5 }},
-    hidden: { opacity: 0, scale: 0, x: 200 },
-};
-
 export function JobItem({ job }: JobProps): ReactElement {
-    const control = useAnimation();
-    const [ref, inView] = useInView();
-
-    useEffect(() => {
-        if (inView) {
-            control.start("visible");
-        } else {
-            control.start("hidden");
-        }
-    }, [control, inView]);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true });
 
     return (
-        <motion.div 
-            className="card w-full mx-2 my-5 p-4 bg-base-100 shadow-xl slide-in"
+        <div 
+            className="card w-full lg:mx-2 my-5 lg:p-4 md:p-2 bg-base-100 shadow-xl slide-in" 
             ref={ref}
-            variants={boxVariant}
-            initial="hidden"
-            animate={control}>
+            style={{
+                transform: isInView ? "none" : "translateY(300px)",
+                opacity: isInView ? 1 : 0,
+                transitionDuration: ".3s"
+            }}
+        >
             <div className="card-body text-left">
-                <h3 className="card-title">
+                <h3 className="card-title text-3xl">
                     {job.title}
                 </h3>
-                <h4 className="card-title">
+                <h4 className="card-title text-2xl">
                     {job.company}
                 </h4>
-                <ul className="list-disc">
-                    {job?.items.map(i => <li>{i}</li>)}
-                </ul>
+                <div className="px-4">
+                    <ul className="list-disc">
+                        {job?.items.map(i => 
+                            <li className="my-3 text-base hover:scale-105">{i}</li>
+                        )}
+                    </ul>
+                </div>
             </div>
-        </motion.div>
+        </div>
     );
 }

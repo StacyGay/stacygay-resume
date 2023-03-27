@@ -6,7 +6,6 @@ body {
 #root {
     max-width: 1280px;
     margin: 0 auto;
-    padding: 2rem;
     text-align: center;
 }
 
@@ -25,18 +24,19 @@ body {
 
 #portrait {
     background: url('./assets/profile.jpg') no-repeat;
-    width: 20em;
-    height: 30em;
-    /* mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
-    mask-image: radial-gradient(rgba(0,0,0,1) 30%, rgba(0,0,0,0) 71%);
-    mask-image: linear-gradient(to top right, rgba(0,0,0,0) 30%, rgba(0,0,0,1)50%, rgba(0,0,0,0) 70%), radial-gradient(rgba(0,0,0,1) 30%, rgba(0,0,0,0) 71%); */
-    /* mask-image: radial-gradient(at 53% 55%, rgba(0,0,0,1) 0, rgba(0,0,0,1) 24%, rgba(0,0,0,0) 100%), linear-gradient(39.80557109226518deg, rgba(0,0,0,0) 0, rgba(0,0,0,1) 49%, rgba(0,0,0,0) 100%); */
-    mask-image: radial-gradient(rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%);
+    width: 17em;
+    height: 23em;
+    mask-image: radial-gradient(rgba(0,0,0,1) 20%, rgba(0,0,0,0) 99%);
     background-clip: border-box;
     background-position: top left;
     background-size: cover;
-    border-radius: 5em;
+    border-radius: 2em;
     filter: grayscale(1);
+}
+
+.greyscale-img {
+    filter: grayscale(1);
+    mask-image: radial-gradient(rgba(0,0,0,1) 40%, rgba(0,0,0,0) 90%);
 }
 
 /* .slide-in {

@@ -1,5 +1,29 @@
 [
     {
+        "text": "Large/Complex Multi-tenant application and SaaS architectures"
+    },
+    {
+        "text": "Web service integration and development, Rest and GraphQL"
+    },
+    {
+        "text": "SOLID OOP and Functional paradigms"
+    },
+    {
+        "text": "Javascript, Typescript, Angular, NodeJS"
+    },
+    {
+        "text": "Android and iOS app development"
+    },
+    {
+        "text": "MySQL, SQL Server"
+    },
+    {
+        "text": "Git"
+    },
+    {
+        "text": "CI/CD Devops"
+    },
+    {
         "icon": "react-small.svg",
         "name": "React"
     },
@@ -21,7 +45,8 @@
     },
     {
         "icon": "csharp.svg",
-        "name": "C#"
+        "name": "C#",
+        "text": "C#, .Net 4.5+ / Core / .Net 6+"
     },
     {
         "icon": "dotnet.svg",
@@ -30,6 +55,10 @@
     {
         "icon": "aws.svg",
         "name": "AWS",
+        "text": "AWS EC2 RDS and Cloudformation / Terraform administration",
         "background": "white"
+    },
+    {
+        "text": "Windows Server and Linux administration"
     }
 ]
