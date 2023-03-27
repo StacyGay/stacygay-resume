@@ -34,6 +34,13 @@ function App() {
                         </div>
                         <div className="avatar">
                             <div className="w-8 rounded">
+                                <a href="https://github.com/StacyGay">
+                                    <img src="github.svg" alt="github" />
+                                </a>
+                            </div>
+                        </div>
+                        <div className="avatar">
+                            <div className="w-8 rounded">
                                 <a href="https://twitter.com/stacygay">
                                     <img src="twitter.svg" alt="twitter" />
                                 </a>
