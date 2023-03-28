@@ -12,7 +12,7 @@ function App() {
         <NavBar></NavBar>
         <div className="App lg:flex py-4 lg:px-4 lg:px-2">
             <div className="lg:w-3/4 py-2 px-5">
-                <header className="my-10">
+                <header className="my-20">
                     <h1>Hi, I'm Stacy Gay</h1>
                     <h2>and I am a Software Engineer</h2>
                     <div className="mt-8">
@@ -61,7 +61,7 @@ function App() {
                     </div>
                 </header>
             
-                <section id="about" className="flex flex-col w-full mt-24 border-opacity-50">
+                <section id="about" className="flex flex-col w-full mt-16 border-opacity-50">
                     <div className="divider">
                         <h2>About</h2>
                     </div>
@@ -70,6 +70,15 @@ function App() {
                             I have 12+ years experience in full stack software engineering focusing on highly configurable multi-tenant applications and SaaS platforms, leveraging robust server, web and mobile platforms to fulfill pressing present and future needs.
                         </p>
                     </div>
+                    <div className="divider">
+                        <h2>Education</h2>
+                    </div>
+                    <p className="my-16">
+                        Coastal Carolina University Conway, SC May 2010
+                        <br />
+                        Bachelor of Science in Computer Science
+                    </p>
+
                 </section>
                 <section id="skills" className="flex flex-col w-full border-opacity-50">
                     <div className="divider">
